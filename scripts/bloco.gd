@@ -11,6 +11,7 @@ func _ready():
 	pass # Replace with function body.
 
 
+		
 func _explode():
 	var instance = block.instance()
 	add_child(instance)
@@ -24,10 +25,17 @@ func _explode():
 	$Timer.start()
 
 func _on_bloco_mouse_entered():
-	_explode()
+	#_explode()
 	pass # Replace with function body.
 
 
 func _on_Timer_timeout():
 	queue_free()
+
+
+
+func _on_bloco_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT and event.pressed:
+			_explode()
 

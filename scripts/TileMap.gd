@@ -1,26 +1,59 @@
 extends TileMap
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-var block = preload("res://scene/bloco.tscn")
 
-# Called when the node enters the scene tree for the first time.
+var particulas = preload("res://scene/block_particles.tscn")
+
 func _ready():
-	var cells = get_used_cells()
-	for i in cells:
-		var instance = block.instance()
-		instance.position = map_to_world(Vector2(i.x,i.y))+cell_size/2
-		instance.get_node("tiles").frame = get_cell(i.x,i.y)
-		set_cell(i.x,i.y,-1)
-		if i.y < 0 and i.y > -200:
-			add_child(instance)
+	pass 
+
+
+func _input(event):
+	if event is InputEventMouseButton:
+		var mouse_pos = get_global_mouse_position()
+		if event.button_index == BUTTON_LEFT and event.pressed:
+			Tirar_blocos(mouse_pos)
 			
-		
+		if event.button_index == BUTTON_RIGHT and event.pressed:
+			Colocar_blocos(mouse_pos,2)
+
+func Tirar_blocos(mouse):
+	if !Bloco_nulo():
+		set_cell(world_to_map(mouse).x,world_to_map(mouse).y,-1)
+		Particulas_bloco(map_to_world(world_to_map(mouse)))
+	pass			
+
+func Colocar_blocos(mouse,bloco):
+	if Bloco_nulo() and map_to_world(world_to_map(mouse)).y < 0 :
+		set_cell(world_to_map(mouse).x,world_to_map(mouse).y,bloco)
+		#print(world_to_map(mouse).x,world_to_map(mouse).y)
+	pass
+
+func Particulas_bloco(pos):
+	var instance = particulas.instance()
+	instance.emitting = true
+	instance.global_position = pos+cell_size/2
+	add_child(instance)
+	pass
+
+func Bloco_nulo():
+	if get_cellv(world_to_map(get_global_mouse_position())) == -1:
+		return true
+	else:
+		return false
+
+
+func _on_Timer_timeout(): 
+	crescer_grama()
+	morrer_grama()
 	pass # Replace with function body.
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func crescer_grama():# cada terra próxima de uma grama tem a possibilidade de virar uma grama
+	for cell in get_used_cells_by_id(0):
+		if get_cell(cell.x,cell.y-1) == -1 and get_cell(cell.x +rand_range(-2,2),cell.y +rand_range(-3,3)) == 1 and rand_range(0,6) <= 1:
+			set_cell(cell.x,cell.y,1)
+				
+func morrer_grama(): #cada grama sem fonte de luz tem a possibilidade de virar uma terra
+	for cell in get_used_cells_by_id(1):
+		if get_cell(cell.x,cell.y-1) != -1 and rand_range(0,50)<=1:
+			set_cell(cell.x,cell.y,0)

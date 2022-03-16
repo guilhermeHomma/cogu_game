@@ -1,6 +1,6 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://sprites/tiles/broke_block.png" type="Texture" id=1]
+[ext_resource path="res://scripts/_particles.gd" type="Script" id=1]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0.506757, 1 )
@@ -11,60 +11,26 @@ gradient = SubResource( 1 )
 
 [sub_resource type="ParticlesMaterial" id=3]
 lifetime_randomness = 0.51
+emission_shape = 2
+emission_box_extents = Vector3( 6, 6, 6 )
 flag_disable_z = true
 spread = 180.0
 gravity = Vector3( 0, 40, 0 )
-initial_velocity = 40.0
+initial_velocity = 10.0
 initial_velocity_random = 0.8
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-scale = 3.5
-scale_random = 1.0
+scale = 8.0
+scale_random = 0.6
 color_ramp = SubResource( 2 )
-
-[sub_resource type="Animation" id=4]
-resource_name = "explode"
-step = 0.05
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.05, 0.1, 0.2 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 3, 5, 6, 7 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.25 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, false ]
-}
 
 [node name="block_particles" type="Particles2D"]
 z_index = 1
 emitting = false
-amount = 20
-lifetime = 0.3
+amount = 10
+lifetime = 0.4
 one_shot = true
 explosiveness = 1.0
+randomness = 0.57
 process_material = SubResource( 3 )
-
-[node name="Sprite" type="Sprite" parent="."]
-modulate = Color( 1, 1, 1, 0.588235 )
-texture = ExtResource( 1 )
-hframes = 8
-frame = 4
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
-autoplay = "explode"
-anims/explode = SubResource( 4 )
+script = ExtResource( 1 )
