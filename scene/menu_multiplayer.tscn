@@ -1,0 +1,137 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://fonts/base_font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://scripts/menu_multiplayer.gd" type="Script" id=2]
+
+[node name="Node" type="Node"]
+
+[node name="menu_multiplayer" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="criar_button" type="Button" parent="menu_multiplayer"]
+margin_left = 1280.0
+margin_top = 850.0
+margin_right = 1617.0
+margin_bottom = 940.0
+custom_fonts/font = ExtResource( 1 )
+text = "Criar"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="entrar_button" type="Button" parent="menu_multiplayer"]
+margin_left = 277.5
+margin_top = 850.0
+margin_right = 614.5
+margin_bottom = 940.0
+custom_fonts/font = ExtResource( 1 )
+text = "Entrar"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="iniciar_button" type="Button" parent="menu_multiplayer"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -168.5
+margin_top = -140.0
+margin_right = 168.5
+margin_bottom = -50.0
+custom_fonts/font = ExtResource( 1 )
+disabled = true
+text = "Iniciar"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="voltar_button" type="Button" parent="menu_multiplayer"]
+margin_left = 80.6534
+margin_top = 58.9391
+margin_right = 253.653
+margin_bottom = 137.939
+custom_fonts/font = ExtResource( 1 )
+text = "Voltar"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="nome" type="LineEdit" parent="menu_multiplayer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -206.5
+margin_top = -340.0
+margin_right = 206.5
+margin_bottom = -282.0
+custom_fonts/font = ExtResource( 1 )
+text = "jogador 1"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ip" type="LineEdit" parent="menu_multiplayer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -206.5
+margin_top = -240.0
+margin_right = 206.5
+margin_bottom = -174.0
+custom_fonts/font = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="menu_multiplayer"]
+margin_left = 605.967
+margin_top = 198.214
+margin_right = 834.967
+margin_bottom = 397.214
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.92549, 0.92549, 0.92549, 1 )
+text = "Nome:"
+
+[node name="ipshow" type="Label" parent="menu_multiplayer"]
+margin_left = 676.266
+margin_top = 28.5613
+margin_right = 1230.27
+margin_bottom = 227.561
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.92549, 0.92549, 0.92549, 1 )
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="menu_multiplayer"]
+margin_left = 680.883
+margin_top = 300.099
+margin_right = 909.883
+margin_bottom = 499.099
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.92549, 0.92549, 0.92549, 1 )
+text = "IP:"
+
+[node name="lista_jogadores" type="ItemList" parent="menu_multiplayer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -236.0
+margin_top = -140.0
+margin_right = 236.0
+margin_bottom = 181.0
+
+[connection signal="pressed" from="menu_multiplayer/criar_button" to="menu_multiplayer" method="_on_criar_button_pressed"]
+[connection signal="pressed" from="menu_multiplayer/entrar_button" to="menu_multiplayer" method="_on_entrar_button_pressed"]
+[connection signal="pressed" from="menu_multiplayer/iniciar_button" to="menu_multiplayer" method="_on_iniciar_button_pressed"]
+[connection signal="pressed" from="menu_multiplayer/voltar_button" to="menu_multiplayer" method="_on_voltar_button_pressed"]

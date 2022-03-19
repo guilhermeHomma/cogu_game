@@ -17,6 +17,7 @@ scale = 4.0
 color = Color( 0.972549, 0.972549, 0.972549, 1 )
 
 [node name="jump_particles" type="Particles2D"]
+modulate = Color( 1, 1, 1, 0.3 )
 z_index = 1
 amount = 10
 lifetime = 0.2

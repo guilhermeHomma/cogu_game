@@ -10,8 +10,12 @@ config_version=4
 
 [application]
 
-config/name="cogu"
-run/main_scene="res://scene/world.tscn"
+config/name="project_blocks"
+run/main_scene="res://scene/menu.tscn"
+
+[autoload]
+
+Networking="*res://scripts/networking.gd"
 
 [display]
 

@@ -11,7 +11,7 @@ func _ready():
 	one_shot = true
 	pass # Replace with function body.
 
-func _physics_process(delta):
+func _physics_process(_delta) -> void:
 	if !emitting:
 		time -= 1
 		if time <=0:
