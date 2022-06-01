@@ -16,27 +16,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -395.0
-margin_top = -52.0
-margin_right = 395.0
-margin_bottom = 52.0
+margin_left = -93.5
+margin_top = -14.5
+margin_right = 93.5
+margin_bottom = 14.5
 custom_fonts/font = ExtResource( 1 )
 text = "Singleplayer"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="multiplayer" type="Button" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -395.0
-margin_top = 70.0
-margin_right = 395.0
-margin_bottom = 174.0
-custom_fonts/font = ExtResource( 1 )
-text = "Multiplayer"
-
 [connection signal="pressed" from="singleplayer" to="." method="_on_singleplayer_pressed"]
-[connection signal="pressed" from="multiplayer" to="." method="_on_multiplayer_pressed"]
