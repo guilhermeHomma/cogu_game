@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 
 var velocity = Vector2(0,0)
-var forca_velocidade = 100
+var vel_force = 100
 var walk = true
 
 var walk_jump = 0
@@ -15,16 +15,16 @@ var dropper = true
 func _physics_process(_delta) -> void:
 
 	if Input.is_action_pressed("D") and walk:
-		velocity.x = forca_velocidade
+		velocity.x = vel_force
 		$sprite.flip_h = false
 	if Input.is_action_pressed("A") and walk:
-		velocity.x = -forca_velocidade ##ou troca aq por 100
+		velocity.x = -vel_force ##ou troca aq por 100
 		$sprite.flip_h = true
 
 	if is_on_wall() and !is_on_floor() and velocity.y>0 and velocity.y<400:
 		velocity.y = gravity*4 #gravity on wall
 		$sprite.frame = 1
-		forca_velocidade = 30
+		vel_force = 30
 		if Input.is_action_just_pressed("W") and walk_jump <6:#jump in wall
 			velocity.y = jump
 			walk_jump +=1
@@ -46,19 +46,19 @@ func _physics_process(_delta) -> void:
 		$anim.play("run")
 		walk_jump = 0
 		walk = true
-		forca_velocidade = 100
+		vel_force = 100
 	else:
 		$anim.stop()
 		if is_on_floor():
 			$sprite.frame = 0
 			walk_jump = 0
 			walk = true
-			forca_velocidade = 100
+			vel_force = 100
 		elif !is_on_wall() and velocity.y >80:
 			$sprite.frame = 6
 			dropper = true
-			if forca_velocidade >= 10:
-				forca_velocidade = lerp(forca_velocidade,10,_delta)
+			if vel_force >= 10:
+				vel_force = lerp(vel_force,10,_delta)
 					
 					
 	if Input.is_action_just_pressed("W") and is_on_floor():#jump
@@ -75,7 +75,7 @@ func _physics_process(_delta) -> void:
 		velocity.x = lerp(velocity.x,0,0.04)
 		if velocity.y > 90:
 			walk = true
-			forca_velocidade = 100
+			vel_force = 100
 	if velocity.y > -90 :
 		$particles.emitting = false
 	if dropper and is_on_floor():
